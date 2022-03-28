@@ -2,9 +2,9 @@ package ua.com.okonsergei.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.com.okonsergei.model.Writer;
+import ua.com.okonsergei.repository.db.entity.Writer;
 import ua.com.okonsergei.repository.WriterRepository;
-import ua.com.okonsergei.repository.db.WriterRepositoryImpl;
+import ua.com.okonsergei.repository.db.hibernate.WriterRepositoryImpl;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -51,10 +51,9 @@ class WriterServiceTest {
 
     @Test
     void update_Success() {
-        Long id = 5L;
         Writer writer = new Writer();
 
-        writerService.update(id, writer);
-        verify(writerRepositoryMock).update(id, writer);
+        writerService.update(writer);
+        verify(writerRepositoryMock).update(writer);
     }
 }

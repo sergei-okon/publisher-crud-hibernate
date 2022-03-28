@@ -1,106 +1,52 @@
 package ua.com.okonsergei.view;
 
-import ua.com.okonsergei.controller.LabelController;
 import ua.com.okonsergei.controller.PostController;
-import ua.com.okonsergei.model.Label;
-import ua.com.okonsergei.model.Message;
-import ua.com.okonsergei.model.Post;
+import ua.com.okonsergei.controller.TagController;
+import ua.com.okonsergei.converter.TagConverter;
+import ua.com.okonsergei.model.dto.PostDto;
+import ua.com.okonsergei.repository.db.entity.PostStatus;
+import ua.com.okonsergei.repository.db.entity.Tag;
 
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class PostView extends BaseView {
 
     private final PostController postController;
-    private final LabelController labelController;
+    private final TagController tagController;
     private final Scanner scanner = new Scanner(System.in);
 
-    public PostView(PostController postController, LabelController labelController) {
+    public PostView(PostController postController, TagController tagController) {
         this.postController = postController;
-        this.labelController = labelController;
+        this.tagController = tagController;
     }
 
     @Override
     void create() {
-        Post post = new Post();
-
-        System.out.println("Input POST content");
-        String content = scanner.nextLine();
-
-        System.out.println("Input Label id via ' , ' ");
-        String label = scanner.nextLine();
-
-        List<Label> labels = new ArrayList<>();
-
-        String[] labelIds = label.replace(" ", "").split(",");
-        Set<String> uniqueLabelsIds = Arrays.stream(labelIds).collect(Collectors.toSet());
-
-        for (String id : uniqueLabelsIds) {
-            Label byId = labelController.findById(Long.valueOf(id));
-            if (byId != null) {
-                labels.add(byId);
-            }
-        }
-
-        post.setContent(content);
-        post.setCreated(LocalDateTime.now());
-        post.setUpdated(LocalDateTime.now());
-        post.setLabels(labels);
-        System.out.println("POST FROM MENU +" + post);
-        postController.save(post);
+        PostDto postDto = new PostDto();
+        fillWriterDtoFromConsoleWithData(postDto);
+        postController.save(postDto);
         System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
     }
 
     @Override
     void edit() {
-        System.out.println("Editing POST... Input id ");
-        Long id;
+        Long id = getValidateIdFromScanner();
 
-        while (!scanner.hasNextLong()) {
-            System.out.println("That not correct id");
-            scanner.next();
-        }
-        id = scanner.nextLong();
-
-        if (postController.findById(id).getId() == null) {
+        if (postController.findById(id) == null) {
             System.out.println("Post with id " + id + " not found");
             return;
         }
-
-        System.out.println("Input POST new content");
-        scanner.nextLine();
-        String content = scanner.nextLine();
-
-        System.out.println("Input Label id via ' , ' ");
-        String label = scanner.next();
-
-        List<Label> labels = new ArrayList<>();
-
-        String[] labelsArray = label.split(",");
-
-        for (String labelId : labelsArray) {
-            labels.add(labelController.findById(Long.valueOf(labelId)));
-        }
-        Post updatePost = new Post();
-        updatePost.setId(id);
-        updatePost.setContent(content);
-        updatePost.setUpdated(LocalDateTime.now());
-        updatePost.setLabels(labels);
-
-        postController.update(id, updatePost);
-        System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
+        PostDto postDto = new PostDto();
+        fillWriterDtoFromConsoleWithData(postDto);
+        postDto.setId(id);
+        postController.update(postDto);
     }
 
     @Override
     void delete() {
-        System.out.println("Deleting POST. Input Id ...");
-        Long id;
-        while (!scanner.hasNextLong()) {
-            System.out.println("That not correct id");
-            scanner.next();
-        }
-        id = Long.valueOf(scanner.next());
+        Long id = getValidateIdFromScanner();
         postController.deleteById(id);
     }
 
@@ -113,5 +59,24 @@ public class PostView extends BaseView {
     public void showSecondMenu() {
         System.out.println("Post control menu. What do you want to do?");
         super.showSecondMenu();
+    }
+
+    private void fillWriterDtoFromConsoleWithData(PostDto postDto) {
+        System.out.println("Input POST new content");
+        scanner.nextLine();
+        String content = scanner.nextLine();
+
+        System.out.println("Input Tags id via ' , ' ");
+        String tag = scanner.next();
+
+        List<Tag> tags = new ArrayList<>();
+        String[] tagsArray = tag.split(",");
+
+        for (String tagId : tagsArray) {
+            tags.add(TagConverter.convertToEntity(tagController.findById(Long.valueOf(tagId))));
+        }
+        postDto.setContent(content);
+        postDto.setStatus(PostStatus.ACTIVE);
+        postDto.setTags(tags);
     }
 }

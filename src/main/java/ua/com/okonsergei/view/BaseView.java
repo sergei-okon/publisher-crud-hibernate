@@ -1,7 +1,5 @@
 package ua.com.okonsergei.view;
 
-import ua.com.okonsergei.model.Message;
-
 import java.util.Scanner;
 
 public abstract class BaseView {
@@ -33,5 +31,16 @@ public abstract class BaseView {
                 default -> System.out.println(Message.ERROR_INPUT.getMessage());
             }
         }
+    }
+
+    Long getValidateIdFromScanner() {
+        System.out.println("Input Id ...");
+        Long id;
+        while (!scanner.hasNextLong()) {
+            System.out.println("That not correct id");
+            scanner.next();
+        }
+        id = scanner.nextLong();
+        return id;
     }
 }

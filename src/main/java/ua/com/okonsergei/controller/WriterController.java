@@ -1,9 +1,12 @@
 package ua.com.okonsergei.controller;
 
-import ua.com.okonsergei.model.Writer;
+import ua.com.okonsergei.converter.WriterConverter;
+import ua.com.okonsergei.model.dto.WriterDto;
+import ua.com.okonsergei.repository.db.entity.Writer;
 import ua.com.okonsergei.service.WriterService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WriterController {
 
@@ -13,24 +16,26 @@ public class WriterController {
         this.writerService = writerService;
     }
 
-    public List<Writer> findAll() {
-        return writerService.findAll();
+    public List<WriterDto> findAll() {
+        return writerService.findAll().stream()
+                .map(WriterConverter::convertToDTO)
+                .collect(Collectors.toList());
     }
 
-    public Writer findById(Long id) {
-        return writerService.findById(id);
+    public WriterDto findById(Long id) {
+        return WriterConverter.convertToDTO(writerService.findById(id));
     }
 
-    public Writer save(Writer writer) {
-        return writerService.save(writer);
+    public Writer save(WriterDto writerDto) {
+        return writerService.save(WriterConverter.convertToEntity(writerDto));
     }
 
     public void deleteById(Long id) {
         writerService.deleteById(id);
     }
 
-    public void update(Long id, Writer writer) {
-        writerService.update(id, writer);
+    public void update(WriterDto writerDto) {
+        writerService.update(WriterConverter.convertToEntity(writerDto));
     }
 }
 

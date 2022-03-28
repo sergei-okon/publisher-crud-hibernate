@@ -1,6 +1,6 @@
 package ua.com.okonsergei.service;
 
-import ua.com.okonsergei.model.Post;
+import ua.com.okonsergei.repository.db.entity.Post;
 import ua.com.okonsergei.repository.PostRepository;
 
 import java.util.List;
@@ -29,8 +29,9 @@ public class PostService {
         postRepository.deleteById(id);
     }
 
-    public void update(Long id, Post post) {
-        postRepository.update(id, post);
+    public void update(Post post) {
+        postRepository.update(post);
     }
+
 }
 

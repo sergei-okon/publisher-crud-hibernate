@@ -2,9 +2,9 @@ package ua.com.okonsergei.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.com.okonsergei.model.Post;
+import ua.com.okonsergei.repository.db.entity.Post;
 import ua.com.okonsergei.repository.PostRepository;
-import ua.com.okonsergei.repository.db.PostRepositoryImpl;
+import ua.com.okonsergei.repository.db.hibernate.PostRepositoryImpl;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -51,10 +51,9 @@ class PostServiceTest {
 
     @Test
     void update_Success() {
-        Long id = 5L;
         Post post = new Post();
 
-        postService.update(id, post);
-        verify(postRepositoryMock).update(id, post);
+        postService.update(post);
+        verify(postRepositoryMock).update(post);
     }
 }
