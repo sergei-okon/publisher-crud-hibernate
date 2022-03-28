@@ -48,9 +48,9 @@ public class TagRepositoryImpl implements TagRepository {
         Tag tag = session.get(Tag.class, id);
 
         String sql = "SELECT  Post_post_id  from posts_tags where tags_tag_id=" + id;
-        int size = session.createSQLQuery(sql).getResultList().size();
-        if (tag == null || size > 1) {
-            System.out.println("Unable to delete Tag from database. Tag with id " + id + " not found");
+        int countRowInPostsTagsTable = session.createSQLQuery(sql).getResultList().size();
+        if (tag == null || countRowInPostsTagsTable > 0) {
+            System.out.println("Unable to delete Tag from database.");
         } else {
             session.delete(tag);
             System.out.println("Deleted Tag by id " + id);
