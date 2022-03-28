@@ -4,12 +4,12 @@ import ua.com.okonsergei.controller.PostController;
 import ua.com.okonsergei.controller.TagController;
 import ua.com.okonsergei.converter.TagConverter;
 import ua.com.okonsergei.model.dto.PostDto;
+import ua.com.okonsergei.model.dto.TagDto;
 import ua.com.okonsergei.repository.db.entity.PostStatus;
 import ua.com.okonsergei.repository.db.entity.Tag;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class PostView extends BaseView {
 
@@ -63,17 +63,23 @@ public class PostView extends BaseView {
 
     private void fillWriterDtoFromConsoleWithData(PostDto postDto) {
         System.out.println("Input POST new content");
-        scanner.nextLine();
-        String content = scanner.nextLine();
-
+        String content = scanner.next();
         System.out.println("Input Tags id via ' , ' ");
-        String tag = scanner.next();
+        scanner.nextLine();
+        String tag = scanner.nextLine();
 
         List<Tag> tags = new ArrayList<>();
-        String[] tagsArray = tag.split(",");
+        String[] tagsId = tag.replace(" ", "").split(",");
+        Set<String> uniqueTagIds = Arrays.stream(tagsId).collect(Collectors.toSet());
 
-        for (String tagId : tagsArray) {
-            tags.add(TagConverter.convertToEntity(tagController.findById(Long.valueOf(tagId))));
+        for (String id : uniqueTagIds) {
+            TagDto byId = tagController.findById(Long.valueOf(id));
+
+            if (byId.getId() == null) {
+                System.out.println("Id of tag " + id + " is not present in DB");
+            } else {
+                tags.add(TagConverter.convertToEntity(byId));
+            }
         }
         postDto.setContent(content);
         postDto.setStatus(PostStatus.ACTIVE);

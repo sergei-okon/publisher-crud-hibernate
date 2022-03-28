@@ -7,19 +7,23 @@ public class PostConverter {
 
     public static PostDto convertToDTO(Post post) {
         PostDto postDto = new PostDto();
-        postDto.setId(post.getId());
-        postDto.setContent(post.getContent());
-        postDto.setStatus(post.getStatus());
-        postDto.setTags(post.getTags());
+        if (post != null) {
+            postDto.setId(post.getId());
+            postDto.setContent(post.getContent());
+            postDto.setStatus(post.getStatus());
+            postDto.setTags(post.getTags());
+        }
         return postDto;
     }
 
     public static Post convertToEntity(PostDto postDto) {
         Post post = new Post();
-        post.setId(postDto.getId());
-        post.setContent(postDto.getContent());
-        post.setStatus(postDto.getStatus());
-        post.setTags(postDto.getTags());
+        if (postDto != null) {
+            post.setId(postDto.getId());
+            post.setContent(postDto.getContent());
+            post.setStatus(postDto.getStatus());
+            post.setTags(postDto.getTags());
+        }
         return post;
     }
 }

@@ -32,6 +32,12 @@ public class WriterView extends BaseView {
     @Override
     void edit() {
         Long id = getValidateIdFromScanner();
+
+        if (writerController.findById(id) == null) {
+            System.out.println("Post with id " + id + " not found");
+            return;
+        }
+
         WriterDto writerDto = new WriterDto();
         fillWriterDtoFromConsoleWithData(writerDto);
         writerDto.setId(id);
@@ -63,18 +69,21 @@ public class WriterView extends BaseView {
         scanner.nextLine();
         String post = scanner.nextLine();
 
-        List<Post> postEntities = new ArrayList<>();
+        List<Post> posts = new ArrayList<>();
 
         String[] postIds = post.replace(" ", "").split(",");
         Set<String> uniquePostIds = Arrays.stream(postIds).collect(Collectors.toSet());
 
         for (String id : uniquePostIds) {
             PostDto byId = postController.findById(Long.valueOf(id));
-            if (byId != null) {
-                postEntities.add(PostConverter.convertToEntity(byId));
+
+            if (byId.getId() == null) {
+                System.out.println("Id of Post " + id + " is not present in DB");
+            } else {
+                posts.add(PostConverter.convertToEntity(byId));
             }
         }
         writerDto.setName(firstName);
-        writerDto.setPosts(postEntities);
+        writerDto.setPosts(posts);
     }
 }

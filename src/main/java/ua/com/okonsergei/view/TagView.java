@@ -30,19 +30,20 @@ public class TagView extends BaseView {
         Long id = getValidateIdFromScanner();
 
         System.out.println("Input Tag new name");
-        scanner.nextLine();
         String name = scanner.nextLine();
 
         TagDto tagDto = new TagDto();
         tagDto.setId(id);
         tagDto.setName(name);
         tagController.update(tagDto);
+        System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
     }
 
     @Override
     void delete() {
         Long id = getValidateIdFromScanner();
         tagController.deleteById(id);
+        System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
     }
 
     @Override

@@ -2,6 +2,8 @@ package ua.com.okonsergei.repository.db.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 import ua.com.okonsergei.repository.TagRepository;
 import ua.com.okonsergei.repository.db.entity.Tag;
 import ua.com.okonsergei.utils.HibernateUtil;
@@ -45,7 +47,9 @@ public class TagRepositoryImpl implements TagRepository {
         Transaction transaction = session.beginTransaction();
         Tag tag = session.get(Tag.class, id);
 
-        if (tag == null) {
+        String sql = "SELECT  Post_post_id  from posts_tags where tags_tag_id=" + id;
+        int size = session.createSQLQuery(sql).getResultList().size();
+        if (tag == null || size > 1) {
             System.out.println("Unable to delete Tag from database. Tag with id " + id + " not found");
         } else {
             session.delete(tag);

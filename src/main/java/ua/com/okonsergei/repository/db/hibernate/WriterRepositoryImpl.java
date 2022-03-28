@@ -27,7 +27,6 @@ public class WriterRepositoryImpl implements WriterRepository {
         Writer writer = session.get(Writer.class, id);
         transaction.commit();
         return writer;
-
     }
 
     @Override
@@ -61,11 +60,14 @@ public class WriterRepositoryImpl implements WriterRepository {
         Transaction transaction = session.beginTransaction();
         Writer writerForUpdate = session.get(Writer.class, writer.getId());
 
-        writerForUpdate.setName(writer.getName());
-        writerForUpdate.setPosts(writer.getPosts());
-        session.update(writerForUpdate);
-        System.out.println("Update writer with id " + writerForUpdate.getId());
-
+        if (writerForUpdate == null) {
+            System.out.println("Unable to update Writer from database. Writer not found");
+        } else {
+            writerForUpdate.setName(writer.getName());
+            writerForUpdate.setPosts(writer.getPosts());
+            session.update(writerForUpdate);
+            System.out.println("Update writer with id " + writerForUpdate.getId());
+        }
         transaction.commit();
     }
 }
