@@ -16,8 +16,8 @@
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">none</property>
 
-        <mapping class="ua.com.okonsergei.repository.db.entity.Tag"/>
-        <mapping class="ua.com.okonsergei.repository.db.entity.Post"/>
-        <mapping class="ua.com.okonsergei.repository.db.entity.Writer"/>
+        <mapping class="ua.com.okonsergei.repository.entity.Tag"/>
+        <mapping class="ua.com.okonsergei.repository.entity.Post"/>
+        <mapping class="ua.com.okonsergei.repository.entity.Writer"/>
     </session-factory>
 </hibernate-configuration>

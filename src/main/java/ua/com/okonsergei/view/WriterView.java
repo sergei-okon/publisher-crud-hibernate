@@ -5,7 +5,7 @@ import ua.com.okonsergei.controller.WriterController;
 import ua.com.okonsergei.converter.PostConverter;
 import ua.com.okonsergei.model.dto.PostDto;
 import ua.com.okonsergei.model.dto.WriterDto;
-import ua.com.okonsergei.repository.db.entity.Post;
+import ua.com.okonsergei.repository.entity.Post;
 
 import java.util.*;
 import java.util.stream.Collectors;

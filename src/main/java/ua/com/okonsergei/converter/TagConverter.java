@@ -1,7 +1,7 @@
 package ua.com.okonsergei.converter;
 
 import ua.com.okonsergei.model.dto.TagDto;
-import ua.com.okonsergei.repository.db.entity.Tag;
+import ua.com.okonsergei.repository.entity.Tag;
 
 public class TagConverter {
 

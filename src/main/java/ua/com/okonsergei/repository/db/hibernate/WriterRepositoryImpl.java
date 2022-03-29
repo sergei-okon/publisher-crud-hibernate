@@ -3,7 +3,7 @@ package ua.com.okonsergei.repository.db.hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import ua.com.okonsergei.repository.WriterRepository;
-import ua.com.okonsergei.repository.db.entity.Writer;
+import ua.com.okonsergei.repository.entity.Writer;
 import ua.com.okonsergei.utils.HibernateUtil;
 
 import java.util.List;

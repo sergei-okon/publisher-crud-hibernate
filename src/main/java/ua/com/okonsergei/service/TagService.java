@@ -1,7 +1,7 @@
 package ua.com.okonsergei.service;
 
 import ua.com.okonsergei.repository.TagRepository;
-import ua.com.okonsergei.repository.db.entity.Tag;
+import ua.com.okonsergei.repository.entity.Tag;
 
 import java.util.List;
 

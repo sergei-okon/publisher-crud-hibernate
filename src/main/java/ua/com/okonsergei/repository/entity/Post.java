@@ -1,4 +1,4 @@
-package ua.com.okonsergei.repository.db.entity;
+package ua.com.okonsergei.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

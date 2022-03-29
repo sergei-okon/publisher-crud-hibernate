@@ -5,8 +5,8 @@ import ua.com.okonsergei.controller.TagController;
 import ua.com.okonsergei.converter.TagConverter;
 import ua.com.okonsergei.model.dto.PostDto;
 import ua.com.okonsergei.model.dto.TagDto;
-import ua.com.okonsergei.repository.db.entity.PostStatus;
-import ua.com.okonsergei.repository.db.entity.Tag;
+import ua.com.okonsergei.repository.entity.PostStatus;
+import ua.com.okonsergei.repository.entity.Tag;
 
 import java.util.*;
 import java.util.stream.Collectors;

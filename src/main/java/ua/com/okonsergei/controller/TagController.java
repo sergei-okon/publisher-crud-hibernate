@@ -2,7 +2,7 @@ package ua.com.okonsergei.controller;
 
 import ua.com.okonsergei.converter.TagConverter;
 import ua.com.okonsergei.model.dto.TagDto;
-import ua.com.okonsergei.repository.db.entity.Tag;
+import ua.com.okonsergei.repository.entity.Tag;
 import ua.com.okonsergei.service.TagService;
 
 import java.util.List;

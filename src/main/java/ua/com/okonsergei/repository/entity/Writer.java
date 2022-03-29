@@ -1,9 +1,10 @@
-package ua.com.okonsergei.repository.db.entity;
+package ua.com.okonsergei.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import ua.com.okonsergei.repository.entity.Post;
 
 import javax.persistence.*;
 import java.util.List;

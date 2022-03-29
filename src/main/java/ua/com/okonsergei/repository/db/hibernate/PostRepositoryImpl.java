@@ -3,8 +3,8 @@ package ua.com.okonsergei.repository.db.hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import ua.com.okonsergei.repository.PostRepository;
-import ua.com.okonsergei.repository.db.entity.Post;
-import ua.com.okonsergei.repository.db.entity.PostStatus;
+import ua.com.okonsergei.repository.entity.Post;
+import ua.com.okonsergei.repository.entity.PostStatus;
 import ua.com.okonsergei.utils.HibernateUtil;
 
 import java.util.List;

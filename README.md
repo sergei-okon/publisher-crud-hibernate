@@ -1,30 +1,33 @@
 # publisher-crud
 
-Необходимо реализовать консольное CRUD приложение, которое имеет следующие сущности:
+Необходимо реализовать консольное CRUD приложение, которое взаимодействует с БД и позволяет выполнять все CRUD операции над сущностями:
 
-Writer (id, firstName, lastName, List<Post> postEntities)
-Post (id, content, created, updated, List<Label> tagEntities)
-Label (id, name)
-PostStatus (enum ACTIVE, UNDER_REVIEW, DELETED)
+Writer(id, name, List<Post> posts)
 
-В качестве хранилища данных необходимо использовать json файлы:
-writerEntities.json, postEntities.json, tagEntities.json
-Пользователь в консоли должен иметь возможность создания, получения, редактирования и удаления данных.
-Слои:
-model - POJO классы
-repository - классы, реализующие доступ к текстовым файлам
-controller - обработка запросов от пользователя
-view - все данные, необходимые для работы с консолью
+Post(id, content, List<Tag> tags, 
 
-Например: Writer, WriterRepository, WriterController, WriterView и т.д.
-Для репозиторного слоя желательно использовать базовый интерфейс:
-interface GenericRepository<T,ID>
+PostStatus status)
 
+Tag(id, name)
 
+PostStatus (enum ACTIVE, DELETED)
 
-interface WriterRepository extends GenericRepository<Writer, Long>
+Требования:
 
-class JsonWriterRepositoryImpl implements WriterRepository
+Все CRUD операции для каждой из сущностей
 
-Результатом выполнения задания должен быть отдельный репозиторий с README.md файлом, который содержит описание задачи, проекта и инструкции запуска приложения через командную строку.
-Для работы с json необходимо использовать библиотеку Gson (https://www.baeldung.com/gson-deserialization-guide). Для импорта зависимостей использовать на выбор Maven/Gradle.
+Придерживаться подхода MVC
+
+Для сборки проекта использовать Maven
+
+Для взаимодействия с БД - Hibernate
+
+Для конфигурирования Hibernate - аннотации
+
+Инициализация БД должна быть реализована с помощью flyway
+
+Сервисный слой приложения должен быть покрыт юнит тестами (junit + mockito)
+
+Результатом выполнения задания должен быть репозиторий на github. 
+
+Технологии: Java, PostgreSQL, Hibernate, Flyway, Maven.

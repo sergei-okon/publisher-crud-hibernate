@@ -1,7 +1,7 @@
 package ua.com.okonsergei.model.dto;
 
 import lombok.Data;
-import ua.com.okonsergei.repository.db.entity.Post;
+import ua.com.okonsergei.repository.entity.Post;
 
 import java.util.List;
 

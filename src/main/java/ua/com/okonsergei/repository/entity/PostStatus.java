@@ -1,4 +1,4 @@
-package ua.com.okonsergei.repository.db.entity;
+package ua.com.okonsergei.repository.entity;
 
 public enum PostStatus {
     ACTIVE, DELETED

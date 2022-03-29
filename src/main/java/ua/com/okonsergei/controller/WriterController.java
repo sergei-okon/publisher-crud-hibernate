@@ -2,7 +2,7 @@ package ua.com.okonsergei.controller;
 
 import ua.com.okonsergei.converter.WriterConverter;
 import ua.com.okonsergei.model.dto.WriterDto;
-import ua.com.okonsergei.repository.db.entity.Writer;
+import ua.com.okonsergei.repository.entity.Writer;
 import ua.com.okonsergei.service.WriterService;
 
 import java.util.List;

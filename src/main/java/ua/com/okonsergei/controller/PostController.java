@@ -2,7 +2,7 @@ package ua.com.okonsergei.controller;
 
 import ua.com.okonsergei.converter.PostConverter;
 import ua.com.okonsergei.model.dto.PostDto;
-import ua.com.okonsergei.repository.db.entity.Post;
+import ua.com.okonsergei.repository.entity.Post;
 import ua.com.okonsergei.service.PostService;
 
 import java.util.List;

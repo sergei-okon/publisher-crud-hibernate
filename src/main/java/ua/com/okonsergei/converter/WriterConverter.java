@@ -1,7 +1,7 @@
 package ua.com.okonsergei.converter;
 
 import ua.com.okonsergei.model.dto.WriterDto;
-import ua.com.okonsergei.repository.db.entity.Writer;
+import ua.com.okonsergei.repository.entity.Writer;
 
 public class WriterConverter {
 

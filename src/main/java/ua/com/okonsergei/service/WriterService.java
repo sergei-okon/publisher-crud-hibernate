@@ -1,7 +1,7 @@
 package ua.com.okonsergei.service;
 
 import ua.com.okonsergei.repository.WriterRepository;
-import ua.com.okonsergei.repository.db.entity.Writer;
+import ua.com.okonsergei.repository.entity.Writer;
 
 import java.util.List;
 

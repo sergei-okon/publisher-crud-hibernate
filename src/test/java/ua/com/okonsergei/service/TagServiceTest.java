@@ -2,7 +2,7 @@ package ua.com.okonsergei.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.com.okonsergei.repository.db.entity.Tag;
+import ua.com.okonsergei.repository.entity.Tag;
 import ua.com.okonsergei.repository.TagRepository;
 import ua.com.okonsergei.repository.db.hibernate.TagRepositoryImpl;
 

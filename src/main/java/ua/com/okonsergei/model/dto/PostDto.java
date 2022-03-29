@@ -1,8 +1,8 @@
 package ua.com.okonsergei.model.dto;
 
 import lombok.Data;
-import ua.com.okonsergei.repository.db.entity.PostStatus;
-import ua.com.okonsergei.repository.db.entity.Tag;
+import ua.com.okonsergei.repository.entity.PostStatus;
+import ua.com.okonsergei.repository.entity.Tag;
 
 import java.util.List;
 

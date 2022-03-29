@@ -2,7 +2,7 @@ package ua.com.okonsergei.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.com.okonsergei.repository.db.entity.Writer;
+import ua.com.okonsergei.repository.entity.Writer;
 import ua.com.okonsergei.repository.WriterRepository;
 import ua.com.okonsergei.repository.db.hibernate.WriterRepositoryImpl;
 
