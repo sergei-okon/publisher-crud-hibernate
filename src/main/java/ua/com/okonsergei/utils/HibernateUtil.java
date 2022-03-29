@@ -17,6 +17,10 @@ public class HibernateUtil {
     public static Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
+
+    public static Session openSession() {
+        return sessionFactory.openSession();
+    }
 }
 
 

@@ -36,14 +36,12 @@ public class TagView extends BaseView {
         tagDto.setId(id);
         tagDto.setName(name);
         tagController.update(tagDto);
-        System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
     }
 
     @Override
     void delete() {
         Long id = getValidateIdFromScanner();
         tagController.deleteById(id);
-        System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
     }
 
     @Override
